@@ -1,0 +1,335 @@
+<%- include('../partials/head'); %>
+    <%- include('../partials/header'); %>
+
+        <div class="vid__bg">
+            <div class="bg-white">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 mx-auto">
+                            <div class="text-center pt-5">
+                                <form action="/" method="POST" class="pb-5">
+                                    <div class="d-flex form-inline">
+                                        <div class="form-group col-lg-8 pl-lg-0">
+                                            <input style="height:55px" onkeyup="success()" id="search__term" class="form-control w-100" placeholder="Search Your City" type="text" autocomplete="off" value="<% if (Query) {%><%= Query %><%}%>" name="searchedQ">
+                                        </div>
+                                        <div class="form-group col-lg-3">
+                                            <button style="height: 55px;" class="btn btn-success btn-block" disabled id="Search__btn" type="submit">Search</button>
+                                        </div>
+                                        <div class="form-group col-lg-1 px-lg-0">
+                                            <button style="height: 55px;" title="Find Me" class="btn btn-success btn-block" id="FindMe__btn" type="button"><i class="far fa-location m-auto" style="font-size: 20px;"></i></button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- map & description weather -->
+                <div class="container pb-5">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <div id="map" style="width:100%;height:400px"></div>
+                        </div>
+                        <div class="col-lg-6 ml-lg-5 pt-3  map__des__card rounded">
+                            <div class="weather__card text-left">
+                                <div class="d-flex">
+                                    <h3 class="mb-1 lname">
+                                        <%= lname %>
+                                    </h3>
+                                    <p class="country ml-3 mb-0 text-muted">
+                                        <%= lcountry %>
+                                    </p>
+                                </div>
+
+                                <p class="f-13 text-muted mb-0">
+                                    <script>
+                                        var today = new Date();
+                                        var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+                                        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+                                        var dateTime = date + '    ' + time;
+                                        document.write(dateTime)
+                                        console.log(dateTime)
+                                    </script>
+                                </p>
+                                <div class="d-flex justify-content-between">
+                                    <p>There is a &nbsp; <span id="precip"><%= precip %></span> % &nbsp; chance of rain</p>
+                                    <p class="text-muted">Observation Time: <span id="obsTime"><%= obsTime  %> </span></p>
+                                </div>
+
+                                <div class="weather__details border-top border-bottom border-secondary pt-3">
+                                    <div class="d-flex">
+                                        <div class="col-6 px-lg-0">
+                                            <div class="d-flex">
+                                                <img src="<%= whetherIcon %>" height="60px" alt="">
+                                                <h2 class="mb-0 f-50 ml-2 temp">
+                                                    <% if (temp) {%>
+                                                        <%= temp %>
+                                                            <%}%>
+                                                </h2>
+                                                <p class="mb-0 ml-2">C</p>
+                                            </div>
+                                            <h6 class="mb-0 mt-2 d-block mb-3 wheatherDes">
+                                                <%= whetherDes %>
+                                            </h6>
+                                        </div>
+
+                                        <div class="col-6 px-lg-0">
+                                            <p class="mb-1">temperature: <span id="temp"><%= temp %></span></p>
+                                            <p class="mb-1">Wind Speed: <span id="windSpeed"><%= windSpeed %> </span></p>
+                                            <p class="mb-1">humidity: <span id="Humidity"><%= humidity %> </span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="whether_extra mt-3 d-flex">
+                                    <div class="col-lg-6 pl-lg-0">
+                                        <div class="d-flex mb-2 justify-content-between border-bottom border-secondary">
+                                            <p class="mb-1"><i class="far fa-wind mr-2"></i>Wind Degree</p>
+                                            <p class="mb-1 windDegree">
+                                                <%= winddeg  %>
+                                            </p>
+                                        </div>
+                                        <div class="d-flex mb-2 justify-content-between border-bottom border-secondary">
+                                            <p class="mb-1"><i class="far fa-wind-warning mr-2"></i>Wind Direction</p>
+                                            <p class="mb-1 windDer">
+                                                <%= windder  %>
+                                            </p>
+                                        </div>
+                                        <div class="d-flex mb-2 justify-content-between border-bottom border-secondary">
+                                            <p class="mb-1"><i class="far fa-tire-pressure-warning mr-2"></i>Pressure</p>
+                                            <p class="mb-1 pressure">
+                                                <%= pressure  %>
+                                            </p>
+                                        </div>
+                                        <div class="d-flex mb-2 justify-content-between">
+                                            <p class="mb-1"><i class="far fa-fog mr-2"></i>Visibility</p>
+                                            <p class="mb-1 visibility">
+                                                <%= visibility  %>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="d-flex mb-2 justify-content-between border-bottom border-secondary">
+                                            <p class="mb-1"><i class="far fa-cloud-showers-heavy mr-2"></i>Precipitation</p>
+                                            <p class="mb-1 precip">
+                                                <%= precip  %>
+                                            </p>
+                                        </div>
+                                        <div class="d-flex mb-2 justify-content-between border-bottom border-secondary">
+                                            <p class="mb-1"><i class="far fa-clouds mr-2"></i>Cloud Cover</p>
+                                            <p class="mb-1 cc">
+                                                <%= cc  %>
+                                            </p>
+                                        </div>
+                                        <div class="d-flex mb-2 justify-content-between border-bottom border-secondary">
+                                            <p class="mb-1"><i class="far fa-shoe-prints mr-2"></i>Feels Like</p>
+                                            <p class="mb-1 feelsLike">
+                                                <%= feelslike  %>
+                                            </p>
+                                        </div>
+                                        <div class="d-flex mb-2 justify-content-between">
+                                            <p class="mb-1"><i class="far fa-indent mr-2"></i>UV Index</p>
+                                            <p class="mb-1 uv">
+                                                <%= uv  %>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <script>
+            $(document).ready(function() {
+                if (document.getElementById("search__term").value === " ") {
+                    document.getElementById('Search__btn').disabled = true;
+                } else {
+                    document.getElementById('Search__btn').disabled = false;
+                }
+            });
+
+
+            function initMap() {
+                var options = {
+                    types: ['(cities)']
+                };
+
+                var input = document.getElementById('search__term');
+                var autocomplete = new google.maps.places.Autocomplete(input, options);
+
+                let infoWindow;
+
+
+                const sLat = '<% if (latitude) {%><%= latitude %><%}%>';
+                const sLng = '<% if (longitude) {%><%= longitude %><%}%>';
+
+                function getLat() {
+                    if (sLat) {
+                        return sLat;
+                    } else {
+                        return pos.coords.latitude;
+                    }
+                };
+
+                function getLng() {
+                    if (sLng) {
+                        return sLng;
+                    } else {
+                        return pos.coords.longitude;
+                    }
+                }
+
+                const lat = getLat();
+                const lng = getLng();
+
+                console.log(lat, lng)
+
+
+                map = new google.maps.Map(document.getElementById("map"), {
+                    center: {
+                        lat: parseFloat(lat),
+                        lng: parseFloat(lng)
+                    },
+                    zoom: 10
+                });
+
+                const myLatLng = {
+                    lat: parseFloat(lat),
+                    lng: parseFloat(lng)
+                };
+
+                new google.maps.Marker({
+                    position: myLatLng,
+                    map,
+                    title: "Hello World!",
+                });
+
+                infoWindow = new google.maps.InfoWindow();
+                const locationButton = document.getElementById("FindMe__btn");
+                locationButton.addEventListener("click", () => {
+                    // Try HTML5 geolocation.
+                    if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(
+                            (position) => {
+                                const pos = {
+                                    lat: position.coords.latitude,
+                                    lng: position.coords.longitude,
+                                };
+                                var data = pos;
+
+                                $.ajax({
+                                    type: 'POST',
+                                    data: JSON.stringify(data),
+                                    contentType: 'application/json',
+                                    url: '/current',
+                                    success: function(response) {
+                                        if (!response.success) {
+                                            window.alert(`You're not enable location service on your device. Make suer location service working properly on your device!`);
+                                        }
+                                        if (response.success) {
+                                            var resource = response.msg;
+                                            console.log(resource)
+                                            document.querySelector('.lname').innerHTML = response.lname;
+                                            document.querySelector('.country').innerHTML = response.lcountry;
+                                            document.querySelector('.wheatherDes').innerHTML = response.whetherDes;
+                                            document.querySelector('.temp').innerHTML = response.temp;
+                                            document.querySelector('#temp').innerHTML = response.temp;
+                                            document.querySelector('#windSpeed').innerHTML = response.windSpeed;
+                                            document.querySelector('#Humidity').innerHTML = response.humidity;
+                                            document.querySelector('.uv').innerHTML = response.uv;
+                                            document.querySelector('.cc').innerHTML = response.cc;
+                                            document.querySelector('.visibility').innerHTML = response.visibility;
+                                            document.querySelector('.feelsLike').innerHTML = response.feelslike;
+                                            document.querySelector('.windDer').innerHTML = response.windder;
+                                            document.querySelector('.windDegree').innerHTML = response.winddeg;
+                                            document.querySelector('.precip').innerHTML = response.precip;
+                                            document.querySelector('#precip').innerHTML = response.precip;
+                                            document.querySelector('.pressure').innerHTML = response.pressure;
+                                            document.querySelector('#obsTime').innerHTML = response.obsTime;
+                                            document.querySelector('#search__term').value = response.Query;
+                                        }
+                                    }
+                                });
+
+                                infoWindow.setPosition(pos);
+                                infoWindow.setContent("Hey! I am here. Is this wrong? Try Search 😊");
+                                infoWindow.open(map);
+                                map.setCenter(pos);
+                            },
+                            () => {
+                                handleLocationError(true, infoWindow, map.getCenter());
+                            }
+                        );
+                    } else {
+                        // Browser doesn't support Geolocation
+                        handleLocationError(false, infoWindow, map.getCenter());
+                    }
+                });
+
+                // if (navigator.geolocation) { //check if geolocation is available
+                //     navigator.geolocation.getCurrentPosition(function(pos) {
+                //         const sLat = '<% if (latitude) {%><%= latitude %><%}%>';
+                //         const sLng = '<% if (longitude) {%><%= longitude %><%}%>';
+
+                //         function getLat() {
+                //             if (sLat) {
+                //                 return sLat;
+                //             } else {
+                //                 return pos.coords.latitude;
+                //             }
+                //         };
+
+                //         function getLng() {
+                //             if (sLng) {
+                //                 return sLng;
+                //             } else {
+                //                 return pos.coords.longitude;
+                //             }
+                //         }
+
+                //         const lat = getLat();
+                //         const lng = getLng();
+
+                //         console.log(lat, lng)
+
+                //         var myCenter = new google.maps.LatLng(lat, lng);
+                //         var mapCanvas = document.getElementById("map");
+                //         var mapOptions = {
+                //             center: myCenter,
+                //             zoom: 11,
+                //             mapTypeId: google.maps.MapTypeId.roadmap
+                //         }
+                //         var map = new google.maps.Map(mapCanvas, mapOptions);
+                //         var marker = new google.maps.Marker({
+                //             position: myCenter
+                //         });
+                //         marker.setMap(map);
+                //         var infowindow = new google.maps.InfoWindow({
+                //             content: "Hey! I am here. Is this wrong? Search again 😊"
+                //         });
+                //         infowindow.open(map, marker);
+                //     });
+                // }
+            }
+
+            // var latitude = '<%- latitude %>'
+            // var longitude = '<%- longitude %>'
+            // mapboxgl.accessToken = 'pk.eyJ1Ijoic3RveG1vZCIsImEiOiJja2tobTIwOGQxZ2cxMnBxdTJuNHdvZWw3In0.8rX5wU7lxdvuFAE3tiHkDw';
+            // var map = new mapboxgl.Map({
+            //     container: 'map',
+            //     style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
+            //     center: [longitude, latitude], // starting position [lng, lat]
+            //     zoom: 9, // starting zoom
+            //     boxZoom: true
+            // });
+            // var marker = new mapboxgl.Marker()
+            //     .setLngLat([longitude, latitude])
+            //     .addTo(map);
+        </script>
+
+        <%- include('../partials/footer'); %>

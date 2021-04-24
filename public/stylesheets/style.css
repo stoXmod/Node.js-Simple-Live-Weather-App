@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+}
+
+.video-bg {
+    position: relative;
+    width: auto;
+    min-width: 100%;
+    height: auto;
+    min-height: 100%;
+    background: transparent url('960x360.png') no-repeat;
+    background-size: cover;
+    background-position: bottom;
+}
+
+video {
+    display: block;
+}
+
+.video-container {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+body {
+    /* background-color: rgb(245, 244, 244); */
+    font-family: "roboto", sans-serif;
+    font-size: 14px;
+    font-style: none;
+    line-height: 24px;
+    font-weight: 500;
+    overflow-x: hidden !important;
+    text-align: left;
+    position: relative;
+    font-family: 'Inter', sans-serif !important;
+    height: 100vh !important;
+}
+
+.pac-container:after {
+    /* Disclaimer: not needed to show 'powered by Google' if also a Google Map is shown */
+    background-image: none !important;
+    height: 0px;
+}
+
+.btn:disabled {
+    cursor: not-allowed !important;
+}
+
+.custom-map-control-button {
+    appearance: button;
+    background-color: #fff;
+    border: 0;
+    border-radius: 2px;
+    box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    margin: 10px;
+    padding: 0 0.5em;
+    height: 40px;
+    font: 400 18px Roboto, Arial, sans-serif;
+    overflow: hidden;
+}
+
+.map__des__card {
+    color: #000000;
+    background-color: #fff;
+    box-shadow: 0 5px 5px 0 rgb(154 160 185 / 5%), 0 5px 30px 0 rgb(166 173 201 / 22%);
+    border-radius: 10px !important;
+}
+
+.gm-svpc,
+.gm-control-active.gm-fullscreen-control,
+.gmnoprint,
+.gm-style-cc {
+    display: none !important;
+}
+
+.custom-map-control-button:hover {
+    background: #ebebeb;
+}
+
+.border-secondary {
+    border-color: #e5ecf3!important;
+}
+
+
+/* font sizes */
+
+.f-13 {
+    font-size: 13px;
+}
+
+.f-50 {
+    font-size: 50px;
+}
