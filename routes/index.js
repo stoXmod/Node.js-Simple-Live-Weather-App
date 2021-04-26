@@ -17,11 +17,11 @@ router.get("/", async function(req, res, next) {
     }
 
     var getGeo = {
-        url: `https://maps.googleapis.com/maps/api/geocode/json?address=Bandarawela,+CA&key=AIzaSyBViPksJ5V993T1QOXq3TZqDKMux6t3eq0&limit=1`
+        url: `https://maps.googleapis.com/maps/api/geocode/json?address=Bandarawela,+CA&key=[GOOGLE_MAP_API_KEY]&limit=1`
     };
 
     var getWhether = {
-        url: `http://api.weatherstack.com/current?access_key=621487873cf0ef750195cd8f66b36f56&query=Bandarawela`
+        url: `http://api.weatherstack.com/current?access_key=[WEATHERSTACK_API_KEY]&query=Bandarawela`
     };
 
     try {
@@ -83,11 +83,11 @@ router.post('/', async(req, res) => {
     }
 
     var getGeo = {
-        url: `https://maps.googleapis.com/maps/api/geocode/json?address=${searchQuery},+CA&key=AIzaSyBViPksJ5V993T1QOXq3TZqDKMux6t3eq0&limit=1`
+        url: `https://maps.googleapis.com/maps/api/geocode/json?address=${searchQuery},+CA&key=[GOOGLE_MAP_API_KEY]&limit=1`
     };
 
     var getWhether = {
-        url: `http://api.weatherstack.com/current?access_key=621487873cf0ef750195cd8f66b36f56&query=${searchQuery}`
+        url: `http://api.weatherstack.com/current?access_key=[WEATHERSTACK_API_KEY]&query=${searchQuery}`
     };
 
     try {
@@ -152,7 +152,7 @@ router.post('/current', async(req, res) => {
     }
 
     var getWhether = {
-        url: `http://api.weatherstack.com/current?access_key=621487873cf0ef750195cd8f66b36f56&query= ${geoCodes.lat},${geoCodes.lng}`
+        url: `http://api.weatherstack.com/current?access_key=[WEATHERSTACK_API_KEY]&query= ${geoCodes.lat},${geoCodes.lng}`
     };
 
     console.log(getWhether.url)
